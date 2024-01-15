@@ -4,7 +4,7 @@ import { themeColors } from '../theme'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import {ArrowLeftIcon} from 'react-native-heroicons/solid';
 import { useNavigation } from '@react-navigation/native';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firbase';
 
 export default function SignUpScreen() {
@@ -12,15 +12,18 @@ export default function SignUpScreen() {
     const[email,setEmail]=useState('');
     const[password,setPassword]=useState('');
 
+
     const handleSubmit=async()=>{
         if(email&&password){
             try{
-                await createUserWithEmailAndPassword(auth,email,password);
+                await signInWithEmailAndPassword(auth,email,password);
             }catch(err){
                 console.log('got error: ',err.message);
             }
         }
     }
+   
+  
 
   return (
     <View className="flex-1 bg-white" style={{backgroundColor:themeColors.bg}}>

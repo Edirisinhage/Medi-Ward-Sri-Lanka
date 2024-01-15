@@ -1,12 +1,29 @@
 import { View, Text, TouchableOpacity,Image, TextInput } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { themeColors } from '../theme'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import {ArrowLeftIcon} from 'react-native-heroicons/solid';
 import { useNavigation } from '@react-navigation/native';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../config/firbase';
+
+
 
 export default function LoginScreen() {
     const navigation=useNavigation();
+    const[email,setEmail]=useState('');
+    const[password,setPassword]=useState('');
+
+    const handleSubmit=async()=>{
+        if(email&&password){
+            try{
+                await signInWithEmailAndPassword(auth,email,password);
+            }catch(err){
+                console.log('got error: ',err.message);
+            }
+        }
+    }
+
   return (
     <View className="flex-1 bg-white" style={{backgroundColor:themeColors.bg}}>
       <SafeAreaView className="flex">
@@ -30,26 +47,31 @@ export default function LoginScreen() {
                     <Text className="text-gray-700 ml-4">Email Address</Text>
                     <TextInput
                         className="p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3"
-                        value="john@gmail.com"
-                        placeholder='Enter Email'
+                        value={email}
+                        placeholder="email"
+                        onChangeText={value=>setEmail(value)}
                     />
 
                     <Text className="text-gray-700 ml-4">Password</Text>
                     <TextInput
                         className="p-4 bg-gray-100 text-gray-700 rounded-2xl"
                         secureTextEntry
-                        value="test12345"
-                        placeholder='Enter Password'
+                        value={password}
+                        placeholder='Password'
+                        onChangeText={value=>setPassword(value)}
                     />
 
                     <TouchableOpacity className="flex items-end mb-5">
                         <Text className="text-gray-700">Forgot Password?</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
+                        onPress={handleSubmit}
                         className="py-3 bg-yellow-400 rounded-xl"
                     
                     >
-                        <Text className="font-xl font-bold text-center text-gray-700">Login</Text>
+                        <Text className="font-xl font-bold text-center text-gray-700">
+                            Login
+                        </Text>
                     </TouchableOpacity>
                 </View>
                 <Text className="text-xl text-gray-700 font-bold text-center py-5">
