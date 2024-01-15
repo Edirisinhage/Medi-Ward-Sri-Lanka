@@ -3,10 +3,14 @@ import { Box,Button,IconButton,InputAdornment,Modal,Paper, Stack,TextField,Typog
 import React, { useState } from 'react'
 import Theme from '../../Component/Theme'; //**** Special import*/
 import {ThemeProvider} from '@mui/material';
-import img1 from '/media/nipuna/SSD FILES/Git Test/medi-ward-sri-lanka/src/Assest/mainlogo.png'
+import img1 from '/media/nipuna/SSD FILES/Git Test/Medi-Ward-Sri-Lanka/src/Assest/mainlogo.png'
 import {Visibility, VisibilityOff } from '@mui/icons-material';
 import PersonIcon from '@mui/icons-material/Person';
 import Recovery from './Recovery';
+import Reset from './Reset';
+import SuccessAlert from '../../Component/SuccessAlert';
+import CustomerSup from './CustomerSup';
+import {Validation} from './Validation';
 
 
 const theme=Theme();
@@ -30,19 +34,11 @@ const UserTitleBox=styled(Stack)(({theme})=>({
     [theme.breakpoints.down("md")]:{
         width:350,
     },
-    //backgroundColor:"red",
-    //paddingLeft:"100px",
-    //paddingRight:"100px",
     textAlign:"center",
 
 }))
 
 const UserText=styled(Stack)(({theme})=>({
-    //marginTop:"7px",
-    //marginBottom:"7px",
-    //backgroundColor:"blue",
-    //marginRight:"3px",
-    //marginLeft:"3px",
     textAlign:"left",
     width:500,
     [theme.breakpoints.down("md")]:{
@@ -51,24 +47,11 @@ const UserText=styled(Stack)(({theme})=>({
 }))
 
 const UserInputBox=styled(Stack)(({theme})=>({
-    
-    //marginTop:"7px",
-    //marginBottom:"7px",
-    //backgroundColor:"yellow",
-    //marginRight:"3px",
-    //marginLeft:"3px",
     textAlign:"left",
     width:500,
     [theme.breakpoints.down("md")]:{
         width:350,
     }
-}))
-
-const RecoveryModal=styled(Modal)(({theme})=>({
-    display:"flex",
-    justifyContent:"center",
-    alignItems:"center",
-
 }))
 
 
@@ -78,13 +61,49 @@ const Login = () => {
 
     const [recoveryModel,setRecoveryModel]=useState(false);
 
-    const recoveryModelOpen=()=>{
-        setRecoveryModel(true);
+    const [reset,setReset]=useState(false);
 
+    const [resetPwd,setResetPwd]=useState(true);
+
+    const [alert,setAlert]=useState(false);
+
+    const [custom,setCustom]=useState(false);
+
+    const [responseAlert,setResponseAlert]=useState(false);
+
+
+    const resetPasswordModelOn=()=>{
+        setReset(true);
+        setRecoveryModel(false);
+        
     }
 
-    const recoveryModelClose=()=>{
-        setRecoveryModel(false);
+    const openAlertSuccess=()=>{
+        if(resetPwd){
+            setAlert(true);
+            setReset(false);
+        }
+    }
+
+
+    const closeCustom=()=>{
+        setCustom(false);
+    }
+
+
+    const responseSuccessAlert=()=>{
+        setResponseAlert(true);
+        setCustom(false);
+    }
+
+    //validatios
+
+    const [username,setUsername]=useState("");
+    const [password,setPassword]=useState("");
+    const [error,setError]=useState({});
+
+    const loginHandle=()=>{
+        setError(Validation(username,password));
     }
 
    
@@ -150,7 +169,13 @@ const Login = () => {
 
                                 <UserInputBox>
 
-                                    <TextField id="username" name="username" variant="outlined" placeholder="Enter your username" size='small'sx={{
+                                    <TextField id="username" name="username" variant="outlined" placeholder="Enter your username" size='small'
+                                    value={username}
+                                    onChange={(event)=>setUsername(event.target.value)}
+                                    helperText={error.uname}
+                                    FormHelperTextProps={{ style: { color:theme.palette.error.main} }}
+                                        
+                                    sx={{
                     
                                         size:'small',
                                         width:"100%",
@@ -183,7 +208,11 @@ const Login = () => {
                                 <UserInputBox>
 
                                     <TextField id="pwd" name="password" variant="outlined" size='small'
+                                    helperText={error.password}
+                                    FormHelperTextProps={{ style: { color:theme.palette.error.main} }}
                                     type={showPassword? "text":"password"}
+                                    value={password}
+                                    onChange={(event)=>setPassword(event.target.value)}
                                     sx={{
                                         placeholder:"Enter your password",
                                         size:'small',
@@ -242,17 +271,16 @@ const Login = () => {
                                         <Button 
                                             variant="text" 
                                             sx={{color:theme.palette.link.main}}
-                                            onClick={recoveryModelOpen}
+                                            onClick={()=>setRecoveryModel(true)}
                                         >
                                                 <Typography variant='subtitle2'>Reset Password</Typography>
                                         </Button>
-                                        <RecoveryModal
-                                            open={recoveryModel}
-                                            aria-labelledby="parent-modal-title"
-                                            aria-describedby="parent-modal-description"
-                                        >
-                                            <Recovery setRecoveryModel={setRecoveryModel}/>
-                                        </RecoveryModal>
+                                    
+                                        {recoveryModel&&<Recovery recoveryModel={recoveryModel} setRecoveryModel={setRecoveryModel}
+                                        resetPasswordModelOn={resetPasswordModelOn}
+                                        />}
+                                        {reset&&<Reset reset={reset} setReset={setReset} openAlertSuccess={openAlertSuccess}/>}
+                                        {alert&&<SuccessAlert setAlert={setAlert}/>}
                                     </Box>
 
 
@@ -265,9 +293,12 @@ const Login = () => {
                                         <Button 
                                             variant="text" 
                                             sx={{color:theme.palette.link.main}}
+                                            onClick={()=>setCustom(true)}
                                         >
                                             <Typography variant='subtitle2'>Customer Suppprt</Typography>
                                         </Button>
+                                        {custom &&<CustomerSup closeCustom={closeCustom} responseSuccessAlert={responseSuccessAlert}/>}
+                                        {responseAlert&&<SuccessAlert setAlert={setResponseAlert}/>}
                                     </Box>
                             </Stack>
                             
@@ -280,13 +311,15 @@ const Login = () => {
                                         width:350,
                                         height:35,
                                     },
-                                    //borderRadius:theme.shape.borderRadius*0.75,
                                     color:"White",
                                     "&:hover":{
                                         backgroundColor:theme.palette.secondary.main,
                                     }
                                     
-                                }}><Typography variant='h6'>Login</Typography></Button>
+                                }}
+                                onClick={loginHandle}
+                                >
+                                    <Typography variant='h6'>Login</Typography></Button>
                             </Stack>
                         </Stack>
                     </Box>
