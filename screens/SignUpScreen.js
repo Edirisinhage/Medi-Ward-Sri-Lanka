@@ -9,6 +9,7 @@ import { auth } from '../config/firbase';
 
 export default function SignUpScreen() {
     const navigation=useNavigation();
+    const[name,setname]=useState('');
     const[email,setEmail]=useState('');
     const[password,setPassword]=useState('');
 
@@ -48,7 +49,8 @@ export default function SignUpScreen() {
                 <Text className="text-gray-700 ml-4">Full Name</Text>
                     <TextInput
                         className="p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3"
-                        value="John Snow"
+                        value={name}
+                        onChangeText={value=>setname(value)}
                         placeholder='Enter Name'
                     />
                     
