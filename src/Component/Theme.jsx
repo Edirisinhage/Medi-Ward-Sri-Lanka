@@ -9,6 +9,7 @@ export default function Theme() {
 
             primary:{
                 main:'#243E4F',
+                dark:"#142733",
             },
             secondary:{
                 main:'#31757E',
