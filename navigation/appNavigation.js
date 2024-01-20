@@ -13,6 +13,7 @@ import SettingsScreen from '../screens/SettingsScreen';
 import DetailsScreen from '../screens/DetailsScreen';
 //import { Ionicons } from '@expo/vector-icons';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { themeColors } from '../theme';
 //import { Entypo } from '@expo/vector-icons';
 
 
@@ -23,10 +24,13 @@ const Tab = createBottomTabNavigator();
 export default function AppNavigation() {
     const {user}=useAuth();
     const HomeTabs =()=>{
+
   return(
+    
     <Tab.Navigator
         screenOptions={({route})=>({
           headerShown:false,
+          tabBarStyle: {backgroundColor:themeColors.bg},
           tabBarIcon: ({focused})=>{
             let iconName;
               if(route.name==="Welcome"){
@@ -43,7 +47,7 @@ export default function AppNavigation() {
              return <Ionicons 
                           name={iconName}
                           size={customizeSize}
-                          color={focused? "#243E4F":"gray"}
+                          color={focused? "#e1fdd5":"#001e3b"}
                           
                           />;
 
