@@ -4,6 +4,7 @@ import Theme from '../../Component/Theme';
 import styled from '@emotion/styled';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { validateNewPassword } from './Validation';
+import { BtnTypography } from './Recovery';
 
 import ReactDOM from 'react-dom'
 
@@ -31,25 +32,26 @@ const ModelStack=styled(Stack)(({})=>({
 const TitleBox=styled(Box)(({theme})=>({
     marginBottom:"30px",
     textAlign:"center",
-    width:500,
+    width:350,
     [theme.breakpoints.down("md")]:{
-        width:350,
+        width:"80%%",
     }
 }))
 
 const UserText=styled(Stack)(({theme})=>({
     textAlign:"left",
-    width:500,
+    width:350,
     [theme.breakpoints.down("md")]:{
-        width:350,
+        width:"100%",
+        
     }
 }))
 
 const UserInputBox=styled(Stack)(({theme})=>({
     textAlign:"left",
-    width:500,
+    width:350,
     [theme.breakpoints.down("md")]:{
-        width:350,
+        width:"100%",
     }
 }))
 
@@ -91,42 +93,53 @@ export default function Reset({reset,setReset,openAlertSuccess}) {
         <Stack alignItems="center" justifyContent="center">
         <ModelStack sx={{
             backgroundColor:theme.palette.background.paper,
-            marginTop:11,
-            marginBottom:11,
-            width:600,
-            height:725,
+            marginTop:"7em",
+            marginBottom:"4em",
+            width:500,
+            height:"70vh",
             borderRadius:theme.shape.borderRadius,
-            overflow:"hidden"
+            overflow:"hidden",
+            overflowY:"auto",
+            [theme.breakpoints.down("md")]:{
+                width:400,
+                height:"70vh",
+            }
             }}
         >
             <Stack display="flex" direction="row" justifyContent='end'>
-                    <Button
+                    <Button size="small"
                         variant="contained" 
                         onClick={()=>setReset(false)}
-                    ><Typography variant='h5'>X</Typography>
+                    ><Typography variant='h6'>X</Typography>
                     </Button>
             </Stack>
             <Stack display="flex" direction="column" alignItems="center">
                 <TitleBox>
-                    <Typography variant="h3">Reset Password</Typography>
+                    <Typography variant="h5" sx={{
+                                [theme.breakpoints.down("md")]:{
+                                    fontSize:"24px"
+                                },
+                       }}>
+                            Reset Password 
+                    </Typography>
                 </TitleBox>
 
                 <UserText>
-                    <Typography variant="h6">Password must be:</Typography>
+                    <Typography variant="subtitle2">Password must be:</Typography>
                 </UserText>
 
                 <Stack sx={{marginBottom:"20px"}}>
                     <ul>
-                        <li><Typography variant="h6">Be at least 8 characters long</Typography></li>
-                    <li> <Typography variant="h6">Contain at least one uppercase</Typography></li>
-                        <li><Typography variant="h6">Contain at least one lowercase</Typography></li>
-                        <li><Typography variant="h6">Contain at least one number</Typography></li>
-                        <li><Typography variant="h6">Contain at least one special characters</Typography></li>
+                        <li><Typography variant="subtitle2">Be at least 8 characters long</Typography></li>
+                    <li> <Typography variant="subtitle2">Contain at least one uppercase</Typography></li>
+                        <li><Typography variant="subtitle2">Contain at least one lowercase</Typography></li>
+                        <li><Typography variant="subtitle2">Contain at least one number</Typography></li>
+                        <li><Typography variant="subtitle2">Contain at least one special characters</Typography></li>
                     </ul>
                 </Stack>
-                <Stack display="flex" direction="column" spacing={2}>
+                <Stack display="flex" direction="column" spacing={1.5}>
                                     <UserText>
-                                        <Typography variant='h5'>Enter New Password</Typography>
+                                        <Typography variant='h6'>Enter New Password</Typography>
                                     </UserText>
 
                                     <UserInputBox>
@@ -139,7 +152,7 @@ export default function Reset({reset,setReset,openAlertSuccess}) {
                                             type={showPassword? "text":"password"}
                                             sx={{
                                                 placeholder:"Enter your password",
-                                                size:'small',
+                                                size:"small",
                                                 width:"100%",
                                                 borderRadius:theme.shape.borderRadius,
                                                 "&:hover":{
@@ -175,7 +188,7 @@ export default function Reset({reset,setReset,openAlertSuccess}) {
                                     </UserInputBox>
 
                                     <UserText>
-                                        <Typography variant='h5'>Confirm New Password</Typography>
+                                        <Typography variant='h6'>Confirm New Password</Typography>
                                     </UserText>
 
                                     <UserInputBox>
@@ -226,10 +239,10 @@ export default function Reset({reset,setReset,openAlertSuccess}) {
                                 </Stack>
 
             <Stack justifyContent="center" alignItems="center" sx={{
-                marginTop:5,
-                width:500,
+                marginTop:"3%",
+                width:350,
                 [theme.breakpoints.down("md")]:{
-                    width:350,
+                    width:250,
                 },
             }}
             >
@@ -244,7 +257,7 @@ export default function Reset({reset,setReset,openAlertSuccess}) {
                     }}
                     onClick={()=>resetPwdHandle()}
                 >
-                        <Typography variant='h6'>Reset Password</Typography>
+                        <BtnTypography>Reset Password</BtnTypography>
                 </Button>
             </Stack>
             </Stack>

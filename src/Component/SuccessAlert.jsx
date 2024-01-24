@@ -32,8 +32,8 @@ export default function SuccessAlert({setAlert}) {
         }}>
             <ModelStack
             sx={{
-                marginTop:45,
-                marginBottom:45,
+                marginTop:"15%",
+                marginBottom:"15%",
                 backgroundColor:theme.palette.background.paper,
                 width:390,
                 height:180,

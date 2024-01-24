@@ -17,22 +17,27 @@ const theme=Theme();
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
 
-    width: 1100,
-    height:800,
+    marginTop:"4em",
+    width: 900,
+    height:"70vh",
     textAlign: 'center',
     borderRadius:theme.shape.borderRadius*6,
     [theme.breakpoints.down("md")]:{
-        width:900,
-        height:600,
+        width:600,
+        height:"70vh",
+    },
+    [theme.breakpoints.down("sm")]:{
+        width:450,
+        height:750,
     }
   }));
 
 const UserTitleBox=styled(Stack)(({theme})=>({
-    marginTop:"100px",
-    marginBottom:"70px",
-    width:500,
+    marginTop:"3em",
+    marginBottom:"3em",
+    width:350,
     [theme.breakpoints.down("md")]:{
-        width:350,
+        width:250,
     },
     textAlign:"center",
 
@@ -40,17 +45,17 @@ const UserTitleBox=styled(Stack)(({theme})=>({
 
 const UserText=styled(Stack)(({theme})=>({
     textAlign:"left",
-    width:500,
+    width:350,
     [theme.breakpoints.down("md")]:{
-        width:350,
+        width:250,
     }
 }))
 
 const UserInputBox=styled(Stack)(({theme})=>({
     textAlign:"left",
-    width:500,
+    width:350,
     [theme.breakpoints.down("md")]:{
-        width:350,
+        width:250,
     }
 }))
 
@@ -111,15 +116,17 @@ const Login = () => {
   return (
     <ThemeProvider theme={theme}>
         <Stack  display="flex" direction="row" justifyContent="center"  alignItems="center" sx={{
-            marginTop:6,
-            marginBottom:6,
+            marginTop:"3%",
+            marginBottom:"3%",
             backgroundColor:theme.palette.background.normal,
         }}>
             <DemoPaper elevation={6}>
                 <Stack display="flex" direction="row" justifyContent="space-between"
                     sx={{
+                        overflowY:"auto",
                         [theme.breakpoints.down("sm")]:{
-                            display:"block"
+                            display:"block",
+                            width:450
                         }
                     }}
                         
@@ -129,43 +136,70 @@ const Login = () => {
                         justifyContent:"center",
                         alignItems:"center",
                         backgroundColor:theme.palette.primary.main,
-                        height:800,
+                        height:"70vh",
                         borderTopLeftRadius:theme.shape.borderRadius*6,
                         borderBottomLeftRadius:theme.shape.borderRadius*6,
+                        [theme.breakpoints.down("md")]:{
+                            height:"70vh",
+                            width:300,
+                        },
                         [theme.breakpoints.down("sm")]:{
-                            height:300,
+                            height:"15vh",
+                            width:450,
+                            borderTopRightRadius:theme.shape.borderRadius*6,
+                            borderBottomLeftRadius:theme.shape.borderRadius*0,
+
                         }
                     
                         }}
 
                     >
-                        <img src={img1} alt='Main_Logo' width="350px" height="380px"
-                        sx={{
-                            [theme.breakpoints.down("md")]:{
-                                width:"200px",
-                                height:"150px",
-                            }
-                        }}></img>
+                            <Box
+
+                            component="img"
+
+                            src={img1}
+
+                            alt="Image description"
+
+                            sx={{
+
+                            width: { xs:"155px", sm: '200px', md:'300px'},
+
+                            height:{xs:"13vh",sm:"23vh",md:"33vh"},
+
+                            }}
+
+                            />
                     
                     </Box>
 
                     <Box flex="55%" sx={{ 
-                        height:800,
+                        height:"70vh",
                         borderTopRightRadius:theme.shape.borderRadius*6,
                         borderBottomRightRadius:theme.shape.borderRadius*6,
-                        backgroundColor:theme.palette.background.paper
+                        backgroundColor:theme.palette.background.paper,
+                        borderBottomLeftRadius:{xs:theme.shape.borderRadius*6}
 
                         }}
                     >   
                         <Stack display="flex" direction="column" alignItems="center"
                         >
                             <UserTitleBox>
-                                <Typography variant="h3">Welcome!</Typography>
+                                <Typography variant="h3" sx={{
+                                    [theme.breakpoints.down("md")]:{
+                                    fontSize:"2rem"
+                                    },  
+                                }}>Welcome!</Typography>
                             </UserTitleBox>
 
                             <Stack display="flex" direction="column" spacing={2}>
                                 <UserText>
-                                    <Typography variant='h5'>Username</Typography>
+                                    <Typography variant='h5' sx={{
+                                    [theme.breakpoints.down("md")]:{
+                                    fontSize:"1rem"
+                                    },  
+                                }}>Username</Typography>
                                 </UserText>
 
                                 <UserInputBox>
@@ -203,7 +237,11 @@ const Login = () => {
                                 </UserInputBox>
 
                                 <UserText>
-                                    <Typography variant='h5'>Password</Typography>
+                                    <Typography variant='h5' sx={{
+                                    [theme.breakpoints.down("md")]:{
+                                    fontSize:"1rem"
+                                    },  
+                                }}>Password</Typography>
                                 </UserText>
 
                                 <UserInputBox>
@@ -221,7 +259,10 @@ const Login = () => {
                                         borderRadius:theme.shape.borderRadius,
                                         "&:hover":{
                                             borderBlockColor:theme.palette.success.main
-                                        }
+                                        },
+                                        [theme.breakpoints.down("md")]:{
+                                            fontSize:"1rem",
+                                            },  
                                         }}
                                     InputProps={{
 
@@ -254,11 +295,11 @@ const Login = () => {
                             </Stack>
 
                             <Stack display="flex" direction="row" justifyContent="space-between" sx={{
-                                    width:500,
-                                    marginTop:"40px",
-                                    marginBottom:"40px",
+                                    width:350,
+                                    marginTop:"20px",
+                                    marginBottom:"20px",
                                     [theme.breakpoints.down("md")]:{
-                                        width:350,
+                                        width:250,
                                     }
                                     }}
                                     
@@ -274,7 +315,8 @@ const Login = () => {
                                             sx={{color:theme.palette.link.main}}
                                             onClick={()=>setRecoveryModel(true)}
                                         >
-                                                <Typography variant='subtitle2'>Reset Password</Typography>
+                                                <Typography sx={{
+                                                    fontSize:"12px"}}>Reset Password</Typography>
                                         </Button>
                                     
                                         {recoveryModel&&<Recovery recoveryModel={recoveryModel} setRecoveryModel={setRecoveryModel}
@@ -296,7 +338,10 @@ const Login = () => {
                                             sx={{color:theme.palette.link.main}}
                                             onClick={()=>setCustom(true)}
                                         >
-                                            <Typography variant='subtitle2'>Customer Suppprt</Typography>
+                                            <Typography sx={{
+                                                fontSize:"12px"
+                                                
+                                                }}>Customer Suppprt</Typography>
                                         </Button>
                                         {custom &&<CustomerSup closeCustom={closeCustom} responseSuccessAlert={responseSuccessAlert}/>}
                                         {responseAlert&&<SuccessAlert setAlert={setResponseAlert}/>}
@@ -305,11 +350,11 @@ const Login = () => {
                             
                             <Stack>
                                 <Button variant='contained'sx={{
-                                    marginTop:"40px",
-                                    width:500,
+                                    marginTop:"5%",
+                                    width:350,
                                     height:40,
                                     [theme.breakpoints.down("md")]:{
-                                        width:350,
+                                        width:250,
                                         height:35,
                                     },
                                     color:"White",
