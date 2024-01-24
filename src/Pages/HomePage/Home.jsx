@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <Stack  display="flex" direction="row">
       <Stack display="flex" flex={2} position="static"
-        sx={{backgroundColor:theme.palette.primary.main,height:"100vh",
+        sx={{backgroundColor:theme.palette.primary.main,maxHeight:"100%",
           [theme.breakpoints.down("sm")]:{
             display:sidebar?"flex":"none",
           }
@@ -29,7 +29,7 @@ export default function Home() {
       </Stack>
      
       <Stack flex={10} margin={0}
-        sx={{backgroundColor:theme.palette.background.normal,height:"100vh"
+        sx={{backgroundColor:theme.palette.background.normal,maxHeight:"100%"
         
         }}>
           <Grid container bgcolor={theme.palette.primary.main} sx={{height:80}} position="static">

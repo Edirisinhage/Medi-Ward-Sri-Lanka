@@ -45,7 +45,7 @@ export default function Sidebar() {
   return (
     <Box>
       <Stack justifyContent="center" alignItems="center">
-        <Box sx={{
+        <Stack spacing={1.5} sx={{
             marginBottom:"30px",
             marginTop:"30px",
         }}><Button variant="text" onClick={GotoProfile}>
@@ -53,11 +53,12 @@ export default function Sidebar() {
                 width:100,
                 height:100,
                 backgroundColor:theme.palette.background.paper,
-                }} alt="Remy Sharp" src={img} 
+                }} alt="Remy Sharp" src={img} //here picture should call from back end 
                 
                 />
             </Button>
-        </Box>
+            <Typography sx={{color:theme.palette.background.normal}}>Username of Logger</Typography>
+        </Stack>
         <Box sx={{width:"100%",
             
                 }}>

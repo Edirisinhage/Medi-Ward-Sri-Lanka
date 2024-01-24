@@ -4,6 +4,7 @@ import React from 'react'
 import Theme from '../../Component/Theme';
 import styled from '@emotion/styled';
 import ReactDOM from 'react-dom'
+import { BtnTypography } from './Recovery';
 
 const theme=Theme();
 
@@ -24,7 +25,7 @@ const ModelStack=styled(Stack)(({})=>({
 
 
 const Styledstack=styled(Stack)(({theme})=>({
-    width:500,
+    width:"80%",
     [theme.breakpoints.down("md")]:{
         width:350,
     },
@@ -35,9 +36,8 @@ const Styledstack=styled(Stack)(({theme})=>({
 }))
 
 const TitleBox=styled(Box)(({theme})=>({
-    marginBottom:"30px",
     textAlign:"center",
-    width:500,
+    width:"80%",
     [theme.breakpoints.down("md")]:{
         width:350,
     }
@@ -51,13 +51,13 @@ export default function CustomerSup({closeCustom,responseSuccessAlert}) {
         }}>
             <ModelStack
             sx={{
-                marginTop:11,
-                marginBottom:11,
+                marginTop:"7em",
                 backgroundColor:theme.palette.background.paper,
-                width:600,
-                height:725,
+                width:500,
+                height:"75vh",
                 borderRadius:theme.shape.borderRadius*0.5,
-                overflow:"hidden"
+                overflow:"hidden",
+                overflowY:"auto",
                 }}
             >
                 <Stack display="flex" direction="row" justifyContent='end'>
@@ -68,20 +68,20 @@ export default function CustomerSup({closeCustom,responseSuccessAlert}) {
                     </Button>
             </Stack>
 
-                <Stack textAlign="center" alignItems="center" spacing={2} sx={{marginTop:"15px"}}>
+                <Stack textAlign="center" alignItems="center" spacing={1} sx={{marginTop:"15px"}}>
                 
                 <TitleBox>
-                    <Typography variant="h3">Customer Support</Typography>
+                    <Typography variant="h5">Customer Support</Typography>
                 </TitleBox>
 
 
                 <Stack spacing={2} textAlign="left" sx={{
-                    width:500,
+                    width:"80%",
                     [theme.breakpoints.down("md")]:{
                         width:350,
                     },
                     }}>
-                    <Typography variant='h5'>Name:</Typography>
+                    <Typography variant='h6'>Name:</Typography>
                 </Stack>
 
                 <Styledstack>
@@ -99,12 +99,12 @@ export default function CustomerSup({closeCustom,responseSuccessAlert}) {
                 </Styledstack>
 
                 <Stack spacing={2} textAlign="left" sx={{
-                    width:500,
+                    width:"80%",
                     [theme.breakpoints.down("md")]:{
                         width:350,
                     },
                     }}>
-                    <Typography variant='h5'>Username:</Typography>
+                    <Typography variant='h6'>Username:</Typography>
                 </Stack>
 
                 <Styledstack>
@@ -122,12 +122,12 @@ export default function CustomerSup({closeCustom,responseSuccessAlert}) {
                 </Styledstack>
 
                 <Stack spacing={2} textAlign="left" sx={{
-                    width:500,
+                    width:"80%",
                     [theme.breakpoints.down("md")]:{
                         width:350,
                     },
                     }}>
-                    <Typography variant='h5'>Email Address:</Typography>
+                    <Typography variant='h6'>Email Address:</Typography>
                 </Stack>
 
                 <Styledstack>
@@ -145,12 +145,12 @@ export default function CustomerSup({closeCustom,responseSuccessAlert}) {
                 </Styledstack>
 
                 <Stack spacing={2} textAlign="left" sx={{
-                    width:500,
+                    width:"80%",
                     [theme.breakpoints.down("md")]:{
                         width:350,
                     },
                     }}>
-                    <Typography variant='h5'>Desciption:</Typography>
+                    <Typography variant='h6'>Desciption:</Typography>
                 </Stack>
 
                 <Styledstack>
@@ -171,7 +171,7 @@ export default function CustomerSup({closeCustom,responseSuccessAlert}) {
 
                 <Stack justifyContent="center" alignItems="center" sx={{
             
-                width:500,
+                width:"80%",
                 [theme.breakpoints.down("md")]:{
                     width:350,
                 },
@@ -188,7 +188,7 @@ export default function CustomerSup({closeCustom,responseSuccessAlert}) {
                     }}
                     onClick={()=>responseSuccessAlert()}
                 >
-                        <Typography variant='h6'>Submit Response</Typography>
+                        <BtnTypography>Submit Response</BtnTypography>
                 </Button>
             </Stack>
         </Stack>

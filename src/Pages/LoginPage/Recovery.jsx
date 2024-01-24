@@ -23,24 +23,33 @@ const ModelStack=styled(Stack)(({})=>({
 
 }))
 
+export const BtnTypography=styled(Typography)(({theme})=>({
+    fontSize:"18px",
+    [theme.breakpoints.down("md")]:{
+        fontSize:"16px",
+
+    },
+
+}))
 
 
 
 const UserTitleBox=styled(Stack)(({theme})=>({
     marginTop:"50px",
     marginBottom:"30px",
-    width:500,
+    width:"65%",
     [theme.breakpoints.down("md")]:{
-        width:350,
+        width:"65%",
+
     },
     textAlign:"center",
 
 }))
 
 const Styledstack=styled(Stack)(({theme})=>({
-    width:500,
+    width:"80%",
     [theme.breakpoints.down("md")]:{
-        width:350,
+        width:"65%",
     },
     textAlign:"center",
     alignItems:"center",
@@ -102,61 +111,71 @@ export default function Recovery({recoveryModel ,setRecoveryModel,resetPasswordM
 
   return ReactDOM.createPortal(
     <Overly>
-        <Stack justifyContent="center" alignItems="center" sx={{
+        <Stack justifyContent="center" alignItems="center" alignContent="-moz-initial" sx={{
             
         }}>
         <ModelStack sx={{
             backgroundColor:theme.palette.background.paper,
-            marginTop:11,
-            marginBottom:11,
-            width:600,
-            height:725,
+            marginTop:"7em",
+            width:500,
+            height:"70vh",
             borderRadius:theme.shape.borderRadius,
             overflow:"hidden",
+            overflowY:"auto",
+            [theme.breakpoints.down("md")]:{
+                width:400,
+                height:"70vh",
+            },
             }}>
             <Stack display="flex" direction="row" justifyContent='end'>
                 <Button
                     variant="contained" 
                     onClick={()=>setRecoveryModel(false)}
-                ><Typography variant='h5'>X</Typography>
+                ><Typography variant='h6'>X</Typography>
                 </Button>
             </Stack>
 
-            <Stack alignItems="center" spacing={3}>
+            <Stack alignItems="center" spacing={2}>
                 <UserTitleBox>
-                    <Typography variant="h3">Recovery Password</Typography>
+                    <Typography variant="h5" sx={{
+                                [theme.breakpoints.down("md")]:{
+                                    fontSize:"24px"
+                                },
+                       }}>
+                             Recovery Password
+                    </Typography>
                 </UserTitleBox>
                 <Styledstack>
-                    <Typography variant="h6">Select a recovery method to proceed</Typography>
+                    <Typography variant="subtitle2">Select a recovery method to proceed</Typography>
                 </Styledstack>
                 <Styledstack  direction="row" >
                     <ButtonGroup>
-                        <Button variant={email?'contained':"outlined"} sx=
-                        {{  width:150,
+                        <Button size="small" variant={email?'contained':"outlined"} sx=
+                        {{  width:100,
                             "&:hover":{
                                 backgroundColor:theme.palette.secondary.main,
                             }
                         }} 
                         onClick={emailHandle}
                         >
-                            <Typography variant='h6'>Email</Typography>
+                            <BtnTypography>Email</BtnTypography>
                         </Button>
 
-                        <Button variant={mobile?"contained":"outlined"} sx=
-                        {{  width:150,
+                        <Button size="small" variant={mobile?"contained":"outlined"} sx=
+                        {{  width:100,
                             "&:hover":{
                                 backgroundColor:theme.palette.secondary.main,
                             }
                         }}
                         onClick={mobileHandle}
                         >
-                            <Typography variant='h6'>Mobile</Typography>
+                            <BtnTypography>Mobile</BtnTypography>
                         </Button>
                     </ButtonGroup>
                 </Styledstack>
                 <Styledstack>
-                    {email&&<Typography variant='h6'>We will send a OTP code for given email address to recover account</Typography>}
-                    {mobile&&<Typography variant='h6'>We will send a OTP code for given mobile number to recover account</Typography>}
+                    {email&&<Typography variant='subtitle2'>We will send a OTP code for given email address to recover account</Typography>}
+                    {mobile&&<Typography variant='subtitle2'>We will send a OTP code for given mobile number to recover account</Typography>}
                 </Styledstack>
 
                 <Styledstack>
@@ -210,19 +229,19 @@ export default function Recovery({recoveryModel ,setRecoveryModel,resetPasswordM
                     
                     
                     >
-                        <Typography variant='h6'>Send OTP</Typography></Button>
+                        <BtnTypography>Send OTP</BtnTypography></Button>
                 </Styledstack>
 
                 <Stack spacing={2} textAlign="left" sx={{
-                    width:500,
+                    width:"80%",
                     [theme.breakpoints.down("md")]:{
-                        width:350,
+                        width:"65%",
                     },
                     }}
 
 
                     >
-                        <Typography variant='h5'>Enter OTP</Typography>
+                        <Typography variant='h6'>Enter OTP</Typography>
                 </Stack>
 
                 <Styledstack>
@@ -256,7 +275,7 @@ export default function Recovery({recoveryModel ,setRecoveryModel,resetPasswordM
                         }}
                         onClick={()=>recoveryHandle()}
                         >
-                            <Typography variant='h6'>Recovery Password</Typography>
+                            <BtnTypography>Recovery Password</BtnTypography>
                         </Button>
             
                 </Styledstack>
