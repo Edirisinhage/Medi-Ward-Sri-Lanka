@@ -1,13 +1,17 @@
-import { Grid, IconButton, Stack, Typography } from '@mui/material'
+import { Grid, IconButton, Stack, Typography} from '@mui/material';
 import React, { useState } from 'react'
 import Sidebar from '../../Component/Sidebar'
 import Theme from '../../Component/Theme';
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
+import Matron from './Matron';
+
+
 
 const theme=Theme();
 
 
 export default function AddWardDetails() {
+
     const  [sidebar,setSideBar]=useState(false);
 
     const sideBarHandle=()=>{
@@ -61,6 +65,7 @@ export default function AddWardDetails() {
               Add Ward Details
             </Typography>
           </Grid>
+          <Matron></Matron>  
         </Grid>
 
     </Stack>

@@ -3,7 +3,7 @@ import { Box,Button,IconButton,InputAdornment,Modal,Paper, Stack,TextField,Typog
 import React, { useState } from 'react'
 import Theme from '../../Component/Theme'; //**** Special import*/
 import {ThemeProvider} from '@mui/material';
-import img1 from '/media/nipuna/SSD FILES/Git Test/Medi-Ward-Sri-Lanka/src/Assest/mainlogo.png'
+import img1 from '../../Assest/mainlogo.png';
 import {Visibility, VisibilityOff } from '@mui/icons-material';
 import PersonIcon from '@mui/icons-material/Person';
 import Recovery from './Recovery';

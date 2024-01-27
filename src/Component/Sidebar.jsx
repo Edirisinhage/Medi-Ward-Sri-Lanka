@@ -1,7 +1,7 @@
 import { Avatar, Box, Button, Stack, Typography } from '@mui/material'
 import React from 'react'
 import Theme from './Theme'
-import img from '/media/nipuna/SSD FILES/Git Test/Medi-Ward-Sri-Lanka/src/Assest/mainlogo.png'
+import img from '../Assest/mainlogo.png';
 import { useNavigate } from 'react-router-dom';
 
 const theme=Theme();
