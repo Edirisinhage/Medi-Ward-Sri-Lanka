@@ -15,9 +15,9 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Login/>}></Route>
-            <Route path="/home" element={<Home/>}></Route>
+      <Routes>
+            {/*<Route path="/" element={<Login/>}></Route>*/}
+            <Route path="/" element={<Home/>}></Route>
             <Route path="/add-ward-details" element={<AddWardDetails/>}></Route>
             <Route path="/leave-approve" element={<LeaveApprove/>}></Route>
             <Route path="/profile" element={<Profile/>}></Route>
